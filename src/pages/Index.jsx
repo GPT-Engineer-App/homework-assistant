@@ -39,7 +39,7 @@ const Index = () => {
         <Heading as="h1" size="xl" textAlign="center">
           StudyHelp
         </Heading>
-        <Text>Enter your homework question below and get help fast!</Text>
+        <Text>Enter your question</Text>
         <Textarea placeholder="Type your question here..." value={question} onChange={(e) => setQuestion(e.target.value)} size="lg" />
         <Input type="file" onChange={(e) => setFile(e.target.files[0])} size="lg" />
         <Button leftIcon={<FaQuestionCircle />} colorScheme="teal" onClick={handleQuestionSubmit} isFullWidth>

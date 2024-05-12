@@ -4,6 +4,7 @@ import { FaQuestionCircle } from "react-icons/fa";
 
 const Index = () => {
   const [question, setQuestion] = useState("");
+  const [file, setFile] = useState(null);
   const toast = useToast();
 
   const handleQuestionSubmit = () => {
@@ -27,8 +28,9 @@ const Index = () => {
       isClosable: true,
     });
 
-    // Clear the question input
+    // Clear the question input and file input
     setQuestion("");
+    setFile(null);
   };
 
   return (
@@ -39,6 +41,7 @@ const Index = () => {
         </Heading>
         <Text>Enter your homework question below and get help fast!</Text>
         <Textarea placeholder="Type your question here..." value={question} onChange={(e) => setQuestion(e.target.value)} size="lg" />
+        <Input type="file" onChange={(e) => setFile(e.target.files[0])} size="lg" />
         <Button leftIcon={<FaQuestionCircle />} colorScheme="teal" onClick={handleQuestionSubmit} isFullWidth>
           Submit Question
         </Button>

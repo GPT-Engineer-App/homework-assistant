@@ -5,6 +5,7 @@ import { FaQuestionCircle } from "react-icons/fa";
 const Index = () => {
   const [question, setQuestion] = useState("");
   const [file, setFile] = useState(null);
+  const [chatHistory, setChatHistory] = useState([]);
   const toast = useToast();
 
   const handleQuestionSubmit = () => {
@@ -28,7 +29,8 @@ const Index = () => {
       isClosable: true,
     });
 
-    // Clear the question input and file input
+    // Add the question and file to chat history and clear the inputs
+    setChatHistory((prev) => [...prev, { question, file }]);
     setQuestion("");
     setFile(null);
   };
@@ -45,6 +47,13 @@ const Index = () => {
         <Button leftIcon={<FaQuestionCircle />} colorScheme="teal" onClick={handleQuestionSubmit} isFullWidth>
           Submit Question
         </Button>
+        {chatHistory.map((chat, index) => (
+          <VStack key={index} spacing={4} align="stretch" mt={4}>
+            <Text fontWeight="bold">Question:</Text>
+            <Text>{chat.question}</Text>
+            {chat.file && <Text>File attached</Text>}
+          </VStack>
+        ))}
       </VStack>
     </Container>
   );
